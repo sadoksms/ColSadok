@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Nom: MyString
+  CodeIso: MyString
+  CodeIsoNum: 1
+  Symbole: MyString
+
+two:
+  Nom: MyString
+  CodeIso: MyString
+  CodeIsoNum: 1
+  Symbole: MyString

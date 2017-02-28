@@ -1,0 +1,2 @@
+json.extract! device, :id, :Nom, :CodeIso, :CodeIsoNum, :Symbole, :SousUniteAunite, :AffichageUnite, :EstSepDecimalActive, :SepDecimal, :EstSepMillierActive, :SepMillier, :EstUniteActive, :created_at, :updated_at
+json.url device_url(device, format: :json)

@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Liste des projets</h1>
+
+<div class="container">
+  <div class="row justify-content-md-center">
+    
+<table  class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Nom</th>
+      <th>Objectif</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @projets.each do |projet| %>
+      <tr>
+        <td><%= image_tag projet.image.url(:thumb) %></td>
+        <td><%= projet.name %></td>
+        <td><%= number_to_currency(projet.objective, unit:  projet.device.Symbole, separator: projet.device.SepDecimal, delimiter: projet.device.SepMillier, format: projet.device.AffichageUnite, precision: projet.device.SousUniteAunite)  %></td>
+        <td><%#= link_to 'Afficher', projet %></td>
+        <td><%= link_to 'Copier', copy_path(projet.id) %></td>
+        <td><%= link_to 'Modifier', edit_projet_path(projet) %></td>
+        <td><%= link_to 'Supprimer', projet, method: :delete, data: { confirm: 'êtes vous sûr de vouloir supprimer?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</div>
+<br>
+
+<%= link_to 'Nouveau Projet', new_projet_path %>

@@ -1,0 +1,38 @@
+<h1>Copier Projet</h1>
+
+<%= form_for @projet, url: {action: "create"}, :method => :POST, html: {multipart: true} do |fo| %>
+  <% if @projet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@projet.errors.count, "error") %> prohibited this projet from being saved:</h2>
+
+      <ul>
+      <% @projet.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= fo.label :name, "Nom du projet" %><br>
+    <%= fo.text_field :name %>
+  </div>
+  <div class="field">
+    <%= fo.label :objective, "Objectif" %><br>
+    <%= fo.number_field :objective %>
+  </div>
+  
+  <div class="field">
+    <%= fo.select :device_id, options_from_collection_for_select(@devices,'id', 'CodeIso', @projet.device_id) %>
+  </div>
+  
+  <div class="field">
+    <%= fo.label :image, "Image" %><br>
+    <%= fo.file_field :image %>
+  </div>
+  
+  <div class="actions">
+    <%= fo.submit "J'ai fini"%>
+  </div>
+<% end %>
+

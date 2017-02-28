@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Devises</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th >Nom</th>
+      <th>Code ISO</th>
+      <th>Code ISO numérique</th>
+      <th>Symbole</th>
+      <th>Activé</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @devices.each do |device| %>
+      <tr>
+        <td><%= device.Nom %></td>
+        <td><%= device.CodeIso %></td>
+        <td><%= device.CodeIsoNum %></td>
+        <td><%= device.Symbole %></td>
+        <td><%= device.EstUniteActive %></td>
+        <td><%#= link_to 'Afficher', device %></td>
+        <td><%= link_to 'Modifier', edit_device_path(device) %></td>
+        <td><%= link_to 'Supprimer', device, method: :delete, data: { confirm: 'êtes vous sûr de vouloir supprimer' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Ajouter Devise', new_device_path %>

@@ -1,0 +1,41 @@
+<%= form_for @projet, html: {multipart: true} do |f| %>
+  <% if @projet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@projet.errors.count, "error") %> prohibited this projet from being saved:</h2>
+      <ul>
+      <% @projet.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, "Nom du projet" %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :objective, "Objectif" %><br>
+    <%= f.number_field :objective, value: number_to_currency(f.object.objective.to_f, delimiter: '', unit: ''), step: :any%>
+  </div>
+  
+  <div class="field">
+    <% options = options_from_collection_for_select(@devices, 'id', 'CodeIso') %>
+    <% if @projet.name.present? %>
+      <% options = options_from_collection_for_select(@devices, 'id', 'CodeIso',@projet.device_id) %>
+      <%= f.select :device_id,  options%>
+    <% else %>
+      <%= f.select :device_id,  options, :prompt => 'Devise' %>
+    <% end %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :image, "Image" %>
+    <br>
+    <%= f.file_field :image %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit "J'ai fini"%>
+  </div>
+<% end %>

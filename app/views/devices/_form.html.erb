@@ -1,0 +1,58 @@
+<%= form_for(@device) do |f| %>
+  <% if @device.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@device.errors.count, "error") %> prohibited this device from being saved:</h2>
+
+      <ul>
+      <% @device.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :Nom, "Nom de la devise" %><br>
+    <%= f.text_field :Nom %>
+  </div>
+  <div class="field">
+    <%= f.label :CodeIso,  "Code ISO" %><br>
+    <%= f.text_field :CodeIso %>
+  </div>
+  <div class="field">
+    <%= f.label :CodeIsoNum, "ISO code numérique" %><br>
+    <%= f.number_field :CodeIsoNum %>
+  </div>
+  <div class="field">
+    <%= f.label :Symbole, "Symbole" %><br>
+    <%= f.text_field :Symbole %>
+  </div>
+  <div class="field">
+    <%= f.label :SousUniteAunite, "Précision" %><br>
+    <%= f.select :SousUniteAunite, [[10,1],[100,2],[1000,3]] %>
+   
+  </div>
+  <div class="field">
+    <%= f.label :AffichageUnite, "Afficher Unité à" %><br>
+    <%=f.select(:AffichageUnite, [["Gauche","%u %n"], ["Droite","%n %u"]])%>
+  </div>
+  <div class="field">
+    <%= f.label :EstSepDecimalActive, "Séparateur décimal" %><br>
+    <%= f.check_box :EstSepDecimalActive %>
+    <%=f.select(:SepDecimal, [[",",","],[".","."]])%>
+  </div>
+  <div class="field">
+    <%= f.label :EstSepMillierActive, "Séparateur de milliers" %><br>
+    <%= f.check_box :EstSepMillierActive %>
+    <%=f.select(:SepMillier, [[",",","],[".","."],["espace"," "]])%>
+  </div>
+  
+  <div class="field">
+    <%= f.label :EstUniteActive, "Activé" %><br>
+    <%= f.check_box :EstUniteActive %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "J'ai fini" %>
+  </div>
+<% end %>
